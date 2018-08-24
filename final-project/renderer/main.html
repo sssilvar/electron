@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Readit</title>
+    <link rel="stylesheet" href="../node_modules/bulma/css/bulma.css">
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="control is-grouped">
+          <p class="control">
+            <a class="button is-primary open-add-modal">
+              <span class="icon is-small">
+                <i class="fa fa-plus"></i>
+              </span>
+            </a>
+          </p>
+
+          <p class="control is-expanded has-icon has-icon-group">
+            <input type="text" class="input" id="search">
+            <span class="icon is-small">
+              <i class="fa fa-search"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="empty" id="read-list">
+        <p id="no-items" class="has-text-centered">No items</p>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div class="modal" id="add-modal">
+      <div class="modal-background"></div>
+        <div class="modal-content">
+          <p class="control has-icon has-icon-right">
+            <input type="text" class="input is-medium" id="item-input" placeholder="Enter URL">
+            <span class="icon">
+              <i class="fa fa-globe"></i>
+            </span>
+          </p>
+
+          <div class="control is-grouped">
+            <p class="control">
+              <a class="button is-primary" id="add-button">
+                  <span class="icon is-small">
+                    <i class="fa fa-plus"></i>
+                  </span>
+                  <span><strong>Add Item</strong></span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button close-add-modal">Cancel</a>
+            </p>
+          </div>
+        </div>
+    </div>
+    
+    <!-- SCRITPS -->
+    <script>
+      // jQuery
+      $ = require('jquery')
+      // You can also require other files to run in this process
+      require('./app.js')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../node_modules/bulma/css/bulma.css">
+        <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="main.css">
+    </head>
+<body>
+
+    <!-- Loading -->
+    <section id="loader" class="hero is-fullheight has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+                <div class="busy">
+                    <h1 class="title">
+                        <span class="icon is-large">
+                            <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+                        </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Failed message -->
+    <div class="failed is-hidden">
+        <h2 class="title">Failed to load</h2>
+        <h2 class="subtitle">Please check your network connection</h2>
+    </div>
+    
+    <!-- Website -->
+    <webview src="about:blank"></webview>
+
+    <script>
+        $ = require('jquery')
+        const queryString = require('query-string')
+
+        // Parse questry results
+        const queryParams = queryString.parse(location.search)
+
+        // Get query string 'url'
+        let url = decodeURIComponent(queryParams.url)
+
+
+        // Load remote content once webview is ready
+        $('webview').one('dom-ready', (e) => {
+            // Load content url into webview
+            e.currentTarget.loadURL(url)
+        }).one('did-finish-load', () => {
+            $('#loader').fadeOut(100)
+        }).one('did-failed-load', () => {
+            $('#loader .busy').addClass('is-hidden')
+            $('#loader').fadeIn(100)
+            $('#loader .failed').removeClass('is-hidden')
+        })
+    </script>
+</body>
+</html>
